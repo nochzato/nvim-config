@@ -709,11 +709,11 @@ require('lazy').setup {
         window = {
           completion = {
             border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
-            winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpBorder,CursorLine:PmenuSel,Search:None',
+            winhighlight = 'FloatBorder:TelescopeBorder',
           },
           documentation = {
             border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
-            winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpBorder,CursorLine:PmenuSel,Search:None',
+            winhighlight = 'FloatBorder:TelescopeBorder',
           },
         },
         snippet = {
@@ -794,7 +794,8 @@ require('lazy').setup {
       vim.cmd.colorscheme 'solarized-osaka'
 
       -- You can configure highlights by doing something like
-      -- vim.cmd.hi 'Comment gui=none'
+      vim.cmd 'highlight Pmenu guibg=NONE'
+      vim.api.nvim_set_hl(0, 'FloatBorder', { link = 'TelescopeBorder' })
     end,
   },
 
