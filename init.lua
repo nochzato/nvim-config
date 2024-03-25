@@ -627,6 +627,7 @@ require('lazy').setup {
         'stylua', -- Used to format lua code
         'prettierd', -- Used to format js/ts
         'eslint-lsp', -- Used to lint js/ts
+        'black', -- Used to format python
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

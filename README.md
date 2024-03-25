@@ -4,4 +4,19 @@
 
 Based on a TJ's [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
 
-You can check out additional plugins in lua/custom/plugins directory
+## Language support:
+- TypeScript, JavaScript
+    - LSP: typescript-tools.nvim (better tsserver)
+    - Formatter: prettierd
+    - Linter: eslint-lsp
+- Python
+    - LSP: pyright
+    - Formatter: black
+
+## Notable plugins:
+- File Explorer: [oil.nvim](https://github.com/stevearc/oil.nvim)
+- Bufferline: [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
+- Lsp Extension: [lspsaga.nvim](https://github.com/nvimdev/lspsaga.nvim)
+
+## Colorscheme
+Colorscheme is [solarized-osaka.nvim](https://github.com/craftzdog/solarized-osaka.nvim). I tweaked it so all borders (telescope floats, cmp floats, etc.) have the same color. Also everything is transparent.
