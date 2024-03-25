@@ -2,7 +2,7 @@
 
 ![Showcase image](./images/showcase.png)
 
-Based on a TJ's [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
+Based on TJ's [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
 
 ## Language support:
 - TypeScript, JavaScript
@@ -19,4 +19,4 @@ Based on a TJ's [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
 - Lsp Extension: [lspsaga.nvim](https://github.com/nvimdev/lspsaga.nvim)
 
 ## Colorscheme
-Colorscheme is [solarized-osaka.nvim](https://github.com/craftzdog/solarized-osaka.nvim). I tweaked it so all borders (telescope floats, cmp floats, etc.) have the same color. Also everything is transparent.
+Colorscheme is [solarized-osaka.nvim](https://github.com/craftzdog/solarized-osaka.nvim). I tweaked it so all borders (telescope floats, cmp floats, etc.) have the same color
