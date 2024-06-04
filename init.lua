@@ -126,6 +126,9 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+-- Keep line indent
+vim.opt.smartindent = true
+
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
@@ -215,7 +218,18 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   desc = 'Autofix eslint problems before saving a buffer',
   group = vim.api.nvim_create_augroup('kickstart-autofix-eslint', { clear = true }),
   pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
-  command = 'silent! EslintFixAll',
+  callback = function()
+    vim.cmd 'silent! EslintFixAll'
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Set 2 spaces for go files',
+  pattern = 'go',
+  callback = function()
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.tabstop = 2
+  end,
 })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
@@ -301,6 +315,7 @@ require('lazy').setup {
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
         ['<leader>b'] = { name = '[B]uffers', _ = 'which_key_ignore' },
+        ['<leader>x'] = { name = 'Trouble', _ = 'which_key_ignore' },
       }
     end,
   },
@@ -556,7 +571,7 @@ require('lazy').setup {
       local servers = {
         pyright = {},
         -- clangd = {},
-        -- gopls = {},
+        gopls = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -628,6 +643,11 @@ require('lazy').setup {
         'prettierd', -- Used to format js/ts
         'eslint-lsp', -- Used to lint js/ts
         'black', -- Used to format python
+        'gomodifytags',
+        'gofumpt',
+        'iferr',
+        'impl',
+        'goimports',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -666,6 +686,7 @@ require('lazy').setup {
         -- javascript = { { "prettierd", "prettier" } },
         javascript = { 'prettierd' },
         typescript = { 'prettierd' },
+        go = { 'goimports', 'gofumpt' },
       },
     },
   },
@@ -851,7 +872,7 @@ require('lazy').setup {
 
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc' },
+        ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'go', 'gomod', 'gosum', 'gowork' },
         -- Autoinstall languages that are not installed
         auto_install = true,
         highlight = { enable = true },
