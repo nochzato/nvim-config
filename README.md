@@ -9,6 +9,9 @@ Based on TJ's [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
     - LSP: [typescript-tools.nvim](https://github.com/pmizio/typescript-tools.nvim) (better tsserver)
     - Formatter: prettierd
     - Linter: eslint-lsp
+- Go
+    - LSP: gopls
+    - Formatters: gomodifytags, gofumpt, iferr, impl, goimports
 - Python
     - LSP: pyright
     - Formatter: black
