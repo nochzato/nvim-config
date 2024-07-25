@@ -318,13 +318,22 @@ require('lazy').setup {
 
       -- Document existing key chains
       require('which-key').register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-        ['<leader>b'] = { name = '[B]uffers', _ = 'which_key_ignore' },
-        ['<leader>x'] = { name = 'Trouble', _ = 'which_key_ignore' },
+        {
+          { '<leader>b', group = '[B]uffers' },
+          { '<leader>b_', hidden = true },
+          { '<leader>c', group = '[C]ode' },
+          { '<leader>c_', hidden = true },
+          { '<leader>d', group = '[D]ocument' },
+          { '<leader>d_', hidden = true },
+          { '<leader>r', group = '[R]ename' },
+          { '<leader>r_', hidden = true },
+          { '<leader>s', group = '[S]earch' },
+          { '<leader>s_', hidden = true },
+          { '<leader>w', group = '[W]orkspace' },
+          { '<leader>w_', hidden = true },
+          { '<leader>x', group = 'Trouble' },
+          { '<leader>x_', hidden = true },
+        },
       }
     end,
   },
@@ -657,6 +666,8 @@ require('lazy').setup {
         'iferr',
         'impl',
         'goimports',
+        'golangci-lint',
+        'golangci-lint-langserver',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -815,6 +826,8 @@ require('lazy').setup {
       require('solarized-osaka').setup {
         -- transparent = true,
         styles = {
+          comments = { italic = false },
+          keywords = { italic = false },
           sidebars = 'transparent',
           floats = 'transparent',
         },

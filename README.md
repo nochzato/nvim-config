@@ -6,7 +6,7 @@ Based on TJ's [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
 
 ## Language support:
 - TypeScript, JavaScript
-    - LSP: [typescript-tools.nvim](https://github.com/pmizio/typescript-tools.nvim) (better tsserver)
+    - LSP: vtsls
     - Formatter: prettierd
     - Linter: eslint-lsp
 - Go
