@@ -103,7 +103,11 @@ vim.g.maplocalleader = ' '
 vim.opt.number = true
 -- You can also add relative line numbers, for help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
+
+-- Set default shiftwidth and tabstop
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -220,24 +224,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
   callback = function()
     vim.cmd 'silent! EslintFixAll'
-  end,
-})
-
-vim.api.nvim_create_autocmd('FileType', {
-  desc = 'Set 2 spaces for go files',
-  pattern = 'go',
-  callback = function()
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.tabstop = 2
-  end,
-})
-
-vim.api.nvim_create_autocmd('FileType', {
-  desc = 'Set 2 spaces for go files',
-  pattern = 'typescript',
-  callback = function()
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.tabstop = 2
   end,
 })
 
