@@ -227,6 +227,16 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end,
 })
 
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint.enable(true)
+    end
+  end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -311,6 +321,7 @@ require('lazy').setup {
           { '<leader>s', group = '[S]earch' },
           { '<leader>w', group = '[W]orkspace' },
           { '<leader>x', group = '[T]rouble' },
+          { '<leader>g', group = '[G]it' },
         },
       }
     end,
@@ -567,7 +578,16 @@ require('lazy').setup {
       local servers = {
         pyright = {},
         -- clangd = {},
-        gopls = {},
+        gopls = {
+          -- settings = {
+          --   gopls = {
+          --     hints = {
+          --       functionTypeParameters = true,
+          --       parameterNames = true,
+          --     },
+          --   },
+          -- },
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -797,24 +817,25 @@ require('lazy').setup {
     -- change the command in the config to whatever the name of that colorscheme is
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
-    'craftzdog/solarized-osaka.nvim',
+    'ellisonleao/gruvbox.nvim',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      require('solarized-osaka').setup {
-        -- transparent = true,
-        styles = {
-          comments = { italic = false },
-          keywords = { italic = false },
-          sidebars = 'transparent',
-          floats = 'transparent',
+      require('gruvbox').setup {
+        transparent_mode = true,
+        contrast = 'hard',
+        italic = {
+          strings = false,
+          emphasis = false,
+          operators = false,
+          folds = false,
         },
       }
 
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'solarized-osaka'
+      vim.cmd.colorscheme 'gruvbox'
 
       -- You can configure highlights by doing something like
       vim.cmd 'highlight Pmenu guibg=NONE'
